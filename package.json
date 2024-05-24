@@ -1,9 +1,9 @@
 {
-  "name": "@hexlet/nodejs-package",
-  "version": "0.0.3",
-  "description": "Node.js boilerplate package",
+  "name": "@hexlet/code",
+  "version": "0.0.1",
+  "description": "Second project in Hexlet",
   "bin": {
-    "nodejs-package": "bin/nodejs-package.js"
+    "": "bin/genDiff.js"
   },
   "simple-git-hooks": {
     "pre-push": "make lint"
@@ -16,16 +16,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hexlet-boilerplates/nodejs-package.git"
+    "url": "git+https://github.com/gonpaul/frontend-project-46"
   },
-  "author": "Kirill Mokevnin",
+  "author": "Gonpaul",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/hexlet-boilerplates/nodejs-package/issues"
+    "url": "https://github.com/gonpaul/frontend-project-46"
   },
   "type": "module",
-  "homepage": "https://github.com/hexlet-boilerplates/nodejs-package#readme",
+  "homepage": "https://github.com/gonpaul/frontend-project-46#readme",
   "dependencies": {
+    "commander": "^12.1.0",
     "debug": "^4.3.4",
     "lodash": "^4.17.21"
   },
