@@ -1,6 +1,6 @@
 import _ from 'lodash';
 // import { parseJsonFile, parseYamlFile } from './parsers.js';
-import { parseJsonOrYaml } from './parsers.js';
+import parseJsonOrYaml from './parsers.js';
 
 const getExt = (path) => path.trim().split('.').pop();
 const getParsingFunc = (ext) => {
