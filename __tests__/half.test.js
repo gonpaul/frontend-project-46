@@ -1,7 +1,7 @@
 // @ts-check
 
-import half from '../index.js';
+import half from '../src/half.js';
 
-test('half', () => {
+test('is three three?', () => {
     expect(half(6)).toBe(3);
 });
