@@ -11,7 +11,7 @@ const customReadFile = (filepath) => {
     // console.log(absolutePath);
     const data = fs.readFileSync(absolutePath, 'utf-8');
     return data;
-}
+};
 
 export const parseJsonFile = (filepath) => {
     try {

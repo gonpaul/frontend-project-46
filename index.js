@@ -7,10 +7,8 @@ const getParsingFunc = (ext) => {
     case 'yaml':
     case 'yml':
         return parseYamlFile;
-        break;
     case 'json':
         return parseJsonFile;
-        break;
     default:
         throw new Error(`There is no parsing function implemented for your format: ${ext}`);
     }
