@@ -20,7 +20,7 @@ const genDiff = (path1, path2) => {
     const data2 = readJsonFile(path2);
 
     if (!data1 || !data2) {
-        return;
+        return null;
     }
 
     const keys1 = Object.keys(data1);
