@@ -1,5 +1,5 @@
-import path from 'path';
-import { fileURLToPath } from 'url';
+// import path from 'path';
+// import { fileURLToPath } from 'url';
 import gendiff from '../index.js';
 
 /*
@@ -29,4 +29,4 @@ test('json format test 1', () => {
 
 test('yaml format test 2', () => {
     expect(gendiff('file1.yml', 'file2.yml')).toBe(answer);
-})
+});

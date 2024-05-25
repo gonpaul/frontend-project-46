@@ -1,21 +1,19 @@
 import _ from 'lodash';
 import { parseJsonFile, parseYamlFile } from './parsers.js';
 
-
 const genDiff = (path1, path2) => {
-
     const ext = path1.trim().split('.').pop();
     let parsingFunc;
     switch (ext) {
-        case 'yaml':
-        case 'yml':
-            parsingFunc = parseYamlFile;
-            break;
-        case 'json':
-            parsingFunc = parseJsonFile;
-            break;
-        default:
-            throw new Error('There is no parsing function implemented for your format: ' + ext);
+    case 'yaml':
+    case 'yml':
+        parsingFunc = parseYamlFile;
+        break;
+    case 'json':
+        parsingFunc = parseJsonFile;
+        break;
+    default:
+        throw new Error(`There is no parsing function implemented for your format: ${ext}`);
     }
     const data1 = parsingFunc(path1);
     const data2 = parsingFunc(path2);
