@@ -1,24 +1,24 @@
-import path from 'node:path';
-import fs from 'fs';
 import _ from 'lodash';
+import { parseJsonFile, parseYamlFile } from './parsers.js';
 
-const buildFullPath = (filepath) => path.resolve(process.cwd(), filepath);
-
-const readJsonFile = (filepath) => {
-    try {
-        const absolutePath = buildFullPath(filepath);
-        const data = fs.readFileSync(absolutePath, 'utf-8');
-        return JSON.parse(data);
-    } catch (error) {
-        console.error(`Error reading or parsing file: ${filepath}`, error);
-        return null;
-    }
-};
 
 const genDiff = (path1, path2) => {
-    const data1 = readJsonFile(path1);
-    const data2 = readJsonFile(path2);
 
+    const ext = path1.trim().split('.').pop();
+    let parsingFunc;
+    switch (ext) {
+        case 'yaml':
+        case 'yml':
+            parsingFunc = parseYamlFile;
+            break;
+        case 'json':
+            parsingFunc = parseJsonFile;
+            break;
+        default:
+            throw new Error('There is no parsing function implemented for your format: ' + ext);
+    }
+    const data1 = parsingFunc(path1);
+    const data2 = parsingFunc(path2);
     if (!data1 || !data2) {
         return null;
     }
