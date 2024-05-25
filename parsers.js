@@ -13,6 +13,7 @@ const customReadFile = (filepath) => {
     return data;
 };
 
+/*
 export const parseJsonFile = (filepath) => {
     try {
         const data = customReadFile(filepath);
@@ -32,3 +33,20 @@ export const parseYamlFile = (filepath) => {
         return null;
     }
 };
+*/
+
+export const parseJsonOrYaml = (filepath) => {
+  try {
+    const fileContent = customReadFile(filepath);
+    const data = yaml.load(fileContent);
+    // console.log(data);
+    return data;
+  } catch (e) {
+    console.error(`Error parsing file ${filepath}:`, e);
+    return null;
+  }
+};
+
+parseJsonOrYaml('file1.json');
+
+parseJsonOrYaml('file1.yml');

@@ -1,14 +1,14 @@
 import _ from 'lodash';
-import { parseJsonFile, parseYamlFile } from './parsers.js';
+// import { parseJsonFile, parseYamlFile } from './parsers.js';
+import { parseJsonOrYaml } from './parsers.js';
 
 const getExt = (path) => path.trim().split('.').pop();
 const getParsingFunc = (ext) => {
     switch (ext) {
     case 'yaml':
     case 'yml':
-        return parseYamlFile;
     case 'json':
-        return parseJsonFile;
+        return parseJsonOrYaml;
     default:
         throw new Error(`There is no parsing function implemented for your format: ${ext}`);
     }
