@@ -21,12 +21,9 @@ const genDiff = (path1, path2) => {
     if (!data1 || !data2) {
         return null;
     }
-
     const keys1 = Object.keys(data1);
     const keys2 = Object.keys(data2);
     const sortedKeys = _.union(keys1, keys2).sort();
-    //    console.log(sortedKeys);
-
     const diff = sortedKeys.reduce((acc, key) => {
         if (Object.hasOwn(data1, key) && !Object.hasOwn(data2, key)) {
             acc.push(` - ${key}: ${data1[key]}`);
