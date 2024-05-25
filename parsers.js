@@ -35,18 +35,16 @@ export const parseYamlFile = (filepath) => {
 };
 */
 
-export const parseJsonOrYaml = (filepath) => {
-  try {
-    const fileContent = customReadFile(filepath);
-    const data = yaml.load(fileContent);
-    // console.log(data);
-    return data;
-  } catch (e) {
-    console.error(`Error parsing file ${filepath}:`, e);
-    return null;
-  }
+const parseJsonOrYaml = (filepath) => {
+    try {
+        const fileContent = customReadFile(filepath);
+        const data = yaml.load(fileContent);
+        // console.log(data);
+        return data;
+    } catch (e) {
+        console.error(`Error parsing file ${filepath}:`, e);
+        return null;
+    }
 };
 
-parseJsonOrYaml('file1.json');
-
-parseJsonOrYaml('file1.yml');
+export default parseJsonOrYaml;
