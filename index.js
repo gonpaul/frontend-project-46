@@ -40,9 +40,11 @@ const genDiff = (path1, path2) => {
             acc.push(`   ${key}: ${data1[key]}`);
         }
         return acc;
-    }, []);
-
-    console.log(diff);
+    }, ['{']);
+    diff.push('}');
+    const result = diff.join('\n');
+    console.log(result);
+    return result;
 };
 
 export default genDiff;
