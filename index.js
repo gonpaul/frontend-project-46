@@ -4,12 +4,12 @@ const getExt = (path) => path.trim().split('.').pop();
 
 const getParsingFunc = (ext) => {
     switch (ext) {
-        case 'yaml':
-        case 'yml':
-        case 'json':
-            return parseJsonOrYaml;
-        default:
-            throw new Error(`There is no parsing function implemented for your format: ${ext}`);
+    case 'yaml':
+    case 'yml':
+    case 'json':
+        return parseJsonOrYaml;
+    default:
+        throw new Error(`There is no parsing function implemented for your format: ${ext}`);
     }
 };
 const displayPropertyValue = (value, depth = 1) => {
@@ -39,9 +39,9 @@ const dataStructuresAreEqual = (value1, value2) => {
 };
 
 const findDiffRecursive = (obj1, obj2, depth = 1) => {
-    const indentPlus = ' '.repeat(depth*4-2) + '+ ';
-    const indentMinus = ' '.repeat(depth*4-2) + '- ';
-    const indent= ' '.repeat(depth*4);
+    const indentPlus = `${' '.repeat(depth * 4 - 2)}+ `;
+    const indentMinus = `${' '.repeat(depth * 4 - 2)}- `;
+    const indent = ' '.repeat(depth * 4);
     const keys = new Set([...Object.keys(obj1), ...Object.keys(obj2)]);
     const diff = [];
 
@@ -49,7 +49,7 @@ const findDiffRecursive = (obj1, obj2, depth = 1) => {
         if (!Object.prototype.hasOwnProperty.call(obj1, key)) {
             diff.push(`${indentPlus}${key}: ${displayPropertyValue(obj2[key], depth)}`);
         } else if (!Object.prototype.hasOwnProperty.call(obj2, key)) {
-            diff.push(`${indentMinus}${key}: ${displayPropertyValue(obj1[key]), depth}`);
+            diff.push(`${indentMinus}${key}: ${displayPropertyValue(obj1[key], depth)}`);
         } else if (!dataStructuresAreEqual(obj1[key], obj2[key])) {
             if (typeof obj1[key] === 'object' && obj1[key] !== null && typeof obj2[key] === 'object' && obj2[key] !== null) {
                 diff.push(`${indent}${key}: {`);
@@ -70,9 +70,11 @@ const findDiffRecursive = (obj1, obj2, depth = 1) => {
 const diff = (data1, data2) => {
     const sortedKeys = [...new Set([...Object.keys(data1), ...Object.keys(data2)])].sort();
     const result = sortedKeys.reduce((acc, key) => {
-        if (Object.prototype.hasOwnProperty.call(data1, key) && !Object.prototype.hasOwnProperty.call(data2, key)) {
+        if (Object.prototype.hasOwnProperty.call(data1, key)
+            && !Object.prototype.hasOwnProperty.call(data2, key)) {
             acc.push(`  - ${key}: ${displayPropertyValue(data1[key])}`);
-        } else if (!Object.prototype.hasOwnProperty.call(data1, key) && Object.prototype.hasOwnProperty.call(data2, key)) {
+        } else if (!Object.prototype.hasOwnProperty.call(data1, key)
+            && Object.prototype.hasOwnProperty.call(data2, key)) {
             acc.push(`  + ${key}: ${displayPropertyValue(data2[key])}`);
         } else if (!dataStructuresAreEqual(data1[key], data2[key])) {
             if (typeof data1[key] === 'object' && typeof data2[key] === 'object') {
