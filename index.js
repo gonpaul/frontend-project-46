@@ -6,23 +6,23 @@ const getExt = (path) => path.trim().split('.').pop();
 
 const getParsingFunc = (ext) => {
     switch (ext) {
-        case 'yaml':
-        case 'yml':
-        case 'json':
-            return parseJsonOrYaml;
-        default:
-            throw new Error(`There is no parsing function implemented for your format: ${ext}`);
+    case 'yaml':
+    case 'yml':
+    case 'json':
+        return parseJsonOrYaml;
+    default:
+        throw new Error(`There is no parsing function implemented for your format: ${ext}`);
     }
 };
 
 const getFormatter = (option) => {
     switch (option) {
-        case 'stylish':
-            return stylishFormatter;
-        case 'plain':
-            return plainFormatter;
-        default:
-            throw new Error(`The formatter ${option} does not exist. Try running gendiff -h to see docs`);
+    case 'stylish':
+        return stylishFormatter;
+    case 'plain':
+        return plainFormatter;
+    default:
+        throw new Error(`The formatter ${option} does not exist. Try running gendiff -h to see docs`);
     }
 };
 
@@ -49,7 +49,9 @@ const generateDiff = (obj1, obj2) => {
             if (typeof obj1[key] === 'object' && typeof obj2[key] === 'object') {
                 return { key, type: 'nested', children: generateDiff(obj1[key], obj2[key]) };
             }
-            return { key, type: 'changed', oldValue: obj1[key], newValue: obj2[key] };
+            return {
+                key, type: 'changed', oldValue: obj1[key], newValue: obj2[key],
+            };
         }
         return { key, type: 'unchanged', value: obj2[key] };
     });
@@ -64,8 +66,8 @@ const genDiff = (path1, path2, format = 'stylish') => {
     const data2 = parsingFunc(path2);
 
     const diff = generateDiff(data1, data2);
-    console.log(diff);
-    // console.log(formatFunc(diff));
+    // console.log(diff);
+    console.log(formatFunc(diff));
     return formatFunc(diff);
 };
 
