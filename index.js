@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import parseJsonOrYaml from './parsers.js';
 
 const getExt = (path) => path.trim().split('.').pop();
@@ -42,7 +43,12 @@ const findDiffRecursive = (obj1, obj2, depth = 1) => {
     const indentPlus = `${' '.repeat(depth * 4 - 2)}+ `;
     const indentMinus = `${' '.repeat(depth * 4 - 2)}- `;
     const indent = ' '.repeat(depth * 4);
-    const keys = new Set([...Object.keys(obj1), ...Object.keys(obj2)]);
+
+    const keys1 = Object.keys(obj1);
+    const keys2 = Object.keys(obj2);
+    const keys = _.union(keys1, keys2).sort();
+    // console.log(keys);
+
     const diff = [];
 
     keys.forEach((key) => {
@@ -68,7 +74,11 @@ const findDiffRecursive = (obj1, obj2, depth = 1) => {
 };
 
 const diff = (data1, data2) => {
-    const sortedKeys = [...new Set([...Object.keys(data1), ...Object.keys(data2)])].sort();
+    // const sortedKeys = [...new Set([...Object.keys(data1), ...Object.keys(data2)])].sort();
+    const keys1 = Object.keys(data1);
+    const keys2 = Object.keys(data2);
+    const sortedKeys = _.union(keys1, keys2).sort();
+    // console.log(sortedKeys);
     const result = sortedKeys.reduce((acc, key) => {
         if (Object.prototype.hasOwnProperty.call(data1, key)
             && !Object.prototype.hasOwnProperty.call(data2, key)) {
@@ -94,7 +104,9 @@ const diff = (data1, data2) => {
     return `{\n${result.join('\n')}\n}`;
 };
 
-const genDiff = (path1, path2) => {
+const genDiff = (path1, path2, format = 'stylish') => {
+    console.log('You have typed in this format: ', format);
+
     const ext = getExt(path1);
     const parsingFunc = getParsingFunc(ext);
     const data1 = parsingFunc(path1);

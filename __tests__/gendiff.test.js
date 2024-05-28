@@ -12,8 +12,7 @@ const buildFullPath = (filename) => path.join(__dirname, '..', '__fixtures__', f
 // console.log(buildFullPath('file1.json'));
 */
 
-const answer = `
-{
+const answer = `{
     common: {
       + follow: false
         setting1: Value 1
