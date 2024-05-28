@@ -4,4 +4,5 @@
 [![Test Coverage](https://api.codeclimate.com/v1/badges/a7819449ac17a560beed/test_coverage)](https://codeclimate.com/github/gonpaul/frontend-project-46/test_coverage)
 
 ### Demo
-[![asciicast](https://asciinema.org/a/ta2KEQFnexlFG2iHziSd7UeBQ.svg)](https://asciinema.org/a/ta2KEQFnexlFG2iHziSd7UeBQ)
+
+[![asciicast](https://asciinema.org/a/ZIN79e7uKOTwdpOAEjQz2UE8C.svg)](https://asciinema.org/a/ZIN79e7uKOTwdpOAEjQz2UE8C)
