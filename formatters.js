@@ -33,6 +33,9 @@ const stylishFormatter = (diff, depth = 1) => {
         }
     });
     const result = lines.join('\n');
+    if (depth === 1) {
+        return `{\n${result}\n}`;
+    }
     return result;
 };
 
