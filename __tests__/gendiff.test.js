@@ -1,16 +1,4 @@
-// import path from 'path';
-// import { fileURLToPath } from 'url';
 import gendiff from '../index.js';
-
-/*
-// Convert import.meta.url to a file path
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-// Function to get the full path of the file
-const buildFullPath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
-// console.log(buildFullPath('file1.json'));
-*/
 
 const answerStylish = `{
     common: {
