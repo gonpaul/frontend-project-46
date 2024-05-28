@@ -2,6 +2,7 @@ import _ from 'lodash';
 import parseJsonOrYaml from './parsers.js';
 import plainFormatter from './formatters/plainFormatter.js';
 import stylishFormatter from './formatters/stylishFormatter.js';
+import jsonFormatter from './formatters/jsonFormatter.js';
 
 const getExt = (path) => path.trim().split('.').pop();
 
@@ -17,11 +18,13 @@ const getParsingFunc = (ext) => {
 };
 
 const getFormatter = (option) => {
-    switch (option) {
+    switch (option.toLowerCase()) {
     case 'stylish':
         return stylishFormatter;
     case 'plain':
         return plainFormatter;
+    case 'json':
+        return jsonFormatter;
     default:
         throw new Error(`The formatter ${option} does not exist. Try running gendiff -h to see docs`);
     }
@@ -67,7 +70,7 @@ const genDiff = (path1, path2, format = 'stylish') => {
     const data2 = parsingFunc(path2);
 
     const diff = generateDiff(data1, data2);
-    console.log(diff);
+    // console.log(diff);
     const formattedDiff = formatFunc(diff);
     console.log(formattedDiff);
     return formattedDiff;
