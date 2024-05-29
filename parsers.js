@@ -7,10 +7,10 @@ import yaml from 'js-yaml';
 
 const buildFullPath = (filepath) => path.resolve(process.cwd(), '__fixtures__', filepath);
 const customReadFile = (filepath) => {
-    const absolutePath = buildFullPath(filepath);
-    // console.log(absolutePath);
-    const data = fs.readFileSync(absolutePath, 'utf-8');
-    return data;
+  const absolutePath = buildFullPath(filepath);
+  // console.log(absolutePath);
+  const data = fs.readFileSync(absolutePath, 'utf-8');
+  return data;
 };
 
 /*
@@ -36,15 +36,15 @@ export const parseYamlFile = (filepath) => {
 */
 
 const parseJsonOrYaml = (filepath) => {
-    try {
-        const fileContent = customReadFile(filepath);
-        const data = yaml.load(fileContent);
-        // console.log(data);
-        return data;
-    } catch (e) {
-        console.error(`Error parsing file ${filepath}:`, e);
-        return null;
-    }
+  try {
+    const fileContent = customReadFile(filepath);
+    const data = yaml.load(fileContent);
+    // console.log(data);
+    return data;
+  } catch (e) {
+    console.error(`Error parsing file ${filepath}:`, e);
+    return null;
+  }
 };
 
 export default parseJsonOrYaml;
