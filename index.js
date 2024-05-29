@@ -73,8 +73,12 @@ const genDiff = (path1, path2, format = 'stylish') => {
     const diff = generateDiff(data1, data2);
     // console.log(diff);
     const formattedDiff = formatFunc(diff);
-    console.log(formattedDiff);
     return formattedDiff;
 };
 
-export default genDiff;
+const cliMain = (path1, path2, format = 'stylish') => {
+    console.log(genDiff(path1, path2, format));
+    return 0;
+};
+
+export { genDiff, cliMain };

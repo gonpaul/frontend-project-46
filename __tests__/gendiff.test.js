@@ -1,4 +1,4 @@
-import gendiff from '../index.js';
+import { genDiff as gendiff } from '../index.js';
 
 const answerStylish = `{
     common: {
