@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "Second project in Hexlet",
   "bin": {
-    "": "bin/genDiff.js"
+    "gendiff": "bin/genDiff.js"
   },
   "simple-git-hooks": {
     "pre-push": "make lint"
