@@ -52,7 +52,7 @@ export default [
       'import/no-named-as-default-member': 'off',
       'no-console': 'off',
       'import/no-extraneous-dependencies': 'off',
-      indent: ['error', 2],
+      // indent: ['error', 2],
     },
   },
 ];

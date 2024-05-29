@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import _ from 'lodash/fp.js';
 import parseJsonOrYaml from './parsers.js';
 import plainFormatter from './formatters/plainFormatter.js';
 import stylishFormatter from './formatters/stylishFormatter.js';
@@ -11,25 +11,25 @@ const getExt = (path) => {
 
 const getParsingFunc = (ext) => {
   switch (ext) {
-  case 'yaml':
-  case 'yml':
-  case 'json':
-    return parseJsonOrYaml;
-  default:
-    throw new Error(`There is no parsing function implemented for your format: ${ext}`);
+    case 'yaml':
+    case 'yml':
+    case 'json':
+      return parseJsonOrYaml;
+    default:
+      throw new Error(`There is no parsing function implemented for your format: ${ext}`);
   }
 };
 
 const getFormatter = (option) => {
   switch (option.toLowerCase()) {
-  case 'stylish':
-    return stylishFormatter;
-  case 'plain':
-    return plainFormatter;
-  case 'json':
-    return jsonFormatter;
-  default:
-    throw new Error(`The formatter ${option} does not exist. Try running gendiff -h to see docs`);
+    case 'stylish':
+      return stylishFormatter;
+    case 'plain':
+      return plainFormatter;
+    case 'json':
+      return jsonFormatter;
+    default:
+      throw new Error(`The formatter ${option} does not exist. Try running gendiff -h to see docs`);
   }
 };
 
@@ -46,7 +46,10 @@ const dataStructuresAreEqual = (value1, value2) => {
 const generateDiff = (obj1, obj2) => {
   const keys1 = Object.keys(obj1);
   const keys2 = Object.keys(obj2);
-  const keys = [..._.union(keys1, keys2)].sort();
+  const keys = _.flow(
+    _.union,
+    _.sortBy(_.identity),
+  )(keys1, keys2);
 
   return keys.map((key) => {
     if (!Object.prototype.hasOwnProperty.call(obj1, key)) {
