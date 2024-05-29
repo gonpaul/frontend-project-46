@@ -1,4 +1,4 @@
-import { genDiff as gendiff } from '../index.js';
+import genDiff from '../index.js';
 
 const answerStylish = `{
     common: {
@@ -174,29 +174,29 @@ const answerJson = `[
     }
 ]`;
 test('json stylish format test 1', () => {
-    expect(gendiff('file1.json', 'file2.json', 'stylish')).toBe(answerStylish);
+    expect(genDiff('file1.json', 'file2.json', 'stylish')).toBe(answerStylish);
 });
 
 test('yaml stylish format test 2', () => {
-    expect(gendiff('file1.yml', 'file2.yml', 'stylish')).toBe(answerStylish);
+    expect(genDiff('file1.yml', 'file2.yml', 'stylish')).toBe(answerStylish);
 });
 
 test('json-yaml stylish format test 3', () => {
-    expect(gendiff('file1.json', 'file2.yml', 'stylish')).toBe(answerStylish);
+    expect(genDiff('file1.json', 'file2.yml', 'stylish')).toBe(answerStylish);
 });
 
 test('json plain format test 1', () => {
-    expect(gendiff('file1.json', 'file2.json', 'plain')).toBe(answerPlain);
+    expect(genDiff('file1.json', 'file2.json', 'plain')).toBe(answerPlain);
 });
 
 test('yaml plain format test 2', () => {
-    expect(gendiff('file1.yml', 'file2.yml', 'plain')).toBe(answerPlain);
+    expect(genDiff('file1.yml', 'file2.yml', 'plain')).toBe(answerPlain);
 });
 
 test('json-yaml plain format test 3', () => {
-    expect(gendiff('file1.json', 'file2.yml', 'plain')).toBe(answerPlain);
+    expect(genDiff('file1.json', 'file2.yml', 'plain')).toBe(answerPlain);
 });
 
 test('json format test', () => {
-    expect(gendiff('file1.json', 'file2.yml', 'json')).toBe(answerJson);
+    expect(genDiff('file1.json', 'file2.yml', 'json')).toBe(answerJson);
 });
