@@ -64,8 +64,9 @@ const generateDiff = (obj1, obj2) => {
 const genDiff = (path1, path2, format = 'stylish') => {
     const formatFunc = getFormatter(format);
 
-    const ext = getExt(path1);
-    const parsingFunc = getParsingFunc(ext);
+    const ext1 = getExt(path1);
+    const parsingFunc = getParsingFunc(ext1);
+
     const data1 = parsingFunc(path1);
     const data2 = parsingFunc(path2);
 
