@@ -38,7 +38,7 @@ const parse = {
   json: JSON.parse,
   yaml: yaml.load,
   yml: yaml.load,
-}
+};
 
 const parseFile = (filepath, format) => {
   try {
