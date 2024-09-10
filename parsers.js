@@ -34,11 +34,17 @@ export const parseYamlFile = (filepath) => {
     }
 };
 */
+const parse = {
+  json: JSON.parse,
+  yaml: yaml.load,
+  yml: yaml.load,
+}
 
-const parseJsonOrYaml = (filepath) => {
+const parseFile = (filepath, format) => {
   try {
     const fileContent = customReadFile(filepath);
-    const data = yaml.load(fileContent);
+    // const data = yaml.load(fileContent);
+    const data = parse[format](fileContent); // dispatch by key
     // console.log(data);
     return data;
   } catch (e) {
@@ -47,4 +53,4 @@ const parseJsonOrYaml = (filepath) => {
   }
 };
 
-export default parseJsonOrYaml;
+export default parseFile;

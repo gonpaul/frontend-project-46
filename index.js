@@ -1,5 +1,5 @@
 import _ from 'lodash/fp.js';
-import parseJsonOrYaml from './parsers.js';
+import parseFile from './parsers.js';
 import plainFormatter from './formatters/plainFormatter.js';
 import stylishFormatter from './formatters/stylishFormatter.js';
 import jsonFormatter from './formatters/jsonFormatter.js';
@@ -7,17 +7,6 @@ import jsonFormatter from './formatters/jsonFormatter.js';
 const getExt = (path) => {
   const parts = path.trim().split('.');
   return parts[parts.length - 1];
-};
-
-const getParsingFunc = (ext) => {
-  switch (ext) {
-    case 'yaml':
-    case 'yml':
-    case 'json':
-      return parseJsonOrYaml;
-    default:
-      throw new Error(`There is no parsing function implemented for your format: ${ext}`);
-  }
 };
 
 const getFormatter = (option) => {
@@ -74,15 +63,15 @@ const genDiff = (path1, path2, format = 'stylish') => {
   const formatFunc = getFormatter(format);
 
   const ext1 = getExt(path1);
-  const parsingFunc = getParsingFunc(ext1);
+  const ext2 = getExt(path2);
 
-  const data1 = parsingFunc(path1);
-  const data2 = parsingFunc(path2);
+  const data1 = parseFile(path1, ext1);
+  const data2 = parseFile(path2, ext2);
 
   const diff = generateDiff(data1, data2);
   // console.log(diff);
   const formattedDiff = formatFunc(diff);
-  console.log(formattedDiff);
+  // console.log(formattedDiff);
   return formattedDiff;
 };
 
